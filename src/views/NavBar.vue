@@ -25,12 +25,10 @@ export default {
 
 		modalEnter: function (el, done) {
 			this.$refs.modalMenu.enterAnimation();
-			document.body.classList.add('modal-open');
 			done();
 		},
 		modalLeave: function (el, done) {
 			this.$refs.modalMenu.leaveAnimation();
-			document.body.classList.remove('modal-open');
 			done();
 		},
 
@@ -43,7 +41,7 @@ export default {
 <template>
 	<div>
 		<header>
-			<h1>Glamora</h1>
+			<h1><router-link to='/'>Glamora</router-link></h1>
 			<ul class="leftPart">
 				<li>
 					<button id="openModalMenu" @click='showModal'>
@@ -53,9 +51,9 @@ export default {
 						</svg>
 					</button>
 				</li>
-				<li><a href="">Collections</a></li>
-				<li><a href="">Bespoke</a></li>
-				<li><a href="">Professionals</a></li>
+				<li><button @click='showModal'>Collections</button></li>
+				<li><router-link to='bespoke'>Bespoke</router-link></li>
+				<li><router-link to='professionals'>Professionals</router-link></li>
 			</ul>
 			<ul class="rightPart">
 				<li>
@@ -108,6 +106,8 @@ header {
 
 	button {
 		fill: grey;
+		color: grey;
+		font-size: 12px;
 	}
 
 	a:visited, a:active {
@@ -124,7 +124,12 @@ header {
 		cursor: pointer;
 	}
 
+	a.router-link-active {
+		color: black;
+	}
+
 	ul:nth-of-type(1){
+		color: grey;
 		margin-right: 60px;
 		font-weight: 400;
 		font-size: 12px;

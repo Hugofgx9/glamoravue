@@ -10,9 +10,10 @@ export default {
 	},
 	methods: {
 		slideShow: function () {
-			const slider = document.getElementById('slider');
-			const container = slider.querySelector('.slider-horizontal ul');
-			const container2 = slider.querySelector('.slider-vertical ul')
+			const slider = this.$refs.slider;
+			const container = slider.children[0].children[0];
+			const container2 = slider.children[2].children[0];
+			//to select with $refs, I must loop the li, but it mean create data with asset path and type;
 			const overlay = slider.getElementsByClassName('overlay');
 			const prevBtn = slider.getElementsByClassName('prev')[0];
 			const nextBtn = slider.getElementsByClassName('next')[0];
@@ -100,7 +101,7 @@ export default {
 </script>
 
 <template>
-	<section id="slider">
+	<section ref='slider' id="slider">
 		<div class="slider-horizontal">
 			<ul>
 				<li>
@@ -178,7 +179,6 @@ export default {
 
 #slider {
 	height: auto;
-	margin-top: 100px;
 
 	.slider-horizontal {
 		overflow-x: hidden;

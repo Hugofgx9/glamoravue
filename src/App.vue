@@ -36,6 +36,7 @@ a{
 
 #app {
   font-family: 'Poppins', sans-serif;
+  padding-top: 100px;
 }
 
 button {
