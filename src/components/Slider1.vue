@@ -1,4 +1,8 @@
 <script>
+import gsap from 'gsap';
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
 	name: 'Slider1',
 	data () {
@@ -49,7 +53,7 @@ export default {
 				newSliderIndex = sliderIndex + 1;
 				overlay[newSliderIndex].classList.add('active');
 				overlay[sliderIndex].classList.remove('active');
-				x = 85 * newSliderIndex;
+				x = 85 * newSliderIndex; //width et height en static, à passer en dynamique??
 				y = 150 * newSliderIndex;
 				container.style.transform = 'translateX(-' + x + 'vw)';
 				container2.style.transform = 'translateY(-' + y + 'px)';
@@ -94,6 +98,16 @@ export default {
 			});
 
 			setInterval(autoSlide,5000); // auto slide each 3s
+		},
+		enterAnimation: function () {
+			let tl = gsap.timeline();
+			tl.from('#slider .slider-horizontal', 2, {
+				opacity: 0,
+			}, '1')
+			.from('#slider .slider-vertical', 1, {
+				opacity: 0,
+				y: 100,
+			}, '2');
 		},
 	}
 }

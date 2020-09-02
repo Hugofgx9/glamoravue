@@ -48,5 +48,9 @@ button:focus {
   outline: 0;
 }
 
+::selection {
+  background-color: #6e84f5;
+}
+
 
 </style>

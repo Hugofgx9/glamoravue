@@ -1,6 +1,6 @@
 <script>
 import ModalMenu from '@/components/ModalMenu.vue';
-// import gsap from "gsap";
+import gsap from "gsap";
 // import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default {
@@ -8,11 +8,13 @@ export default {
 	components: {
 		ModalMenu,
 	},
-
 	data () {
 		return {
 			isModalVisible: false,
 		};
+	},
+	mounted: function () {
+		this.navEnter();
 	},
 
 	methods: {
@@ -31,7 +33,28 @@ export default {
 			this.$refs.modalMenu.leaveAnimation();
 			done();
 		},
-
+		navEnter: function () {
+			let tl = gsap.timeline();
+			tl.from('header h1', 1, {
+				scale: .8,
+				opacity: 0,
+			})
+			.from('header .leftPart li', {
+				opacity: 0,
+				x: 80,
+				stagger: {
+					amount: 0.8,
+				},
+			}, '.5')
+			.from('header .rightPart li', {
+				opacity: 0,
+				x: -80,
+				stagger: {
+					amount: 0.8,
+					from: 'end',
+				},
+			}, '<');
+		}
 	},
 };
 
