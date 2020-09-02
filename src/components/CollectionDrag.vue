@@ -13,7 +13,8 @@ export default {
 	},
 	mounted: function () {
 		this.scaleImageOnHover();
-		this.scrollByDrag();
+		this.scrollByDrag(this.$refs.scrollWrap1);
+		this.scrollByDrag(this.$refs.scrollWrap2);
 		setTimeout( () => {
 			this.calculateImageHeight();
 		}, 400);
@@ -24,19 +25,18 @@ export default {
 	},
 	methods: {
 		scaleImageOnHover: function () {
-			function ImageHover (container) {
-				container.addEventListener('mouseover', function(){
-					container.querySelector('img').style.transform = 'scale(1.05)';
+			function ImageHover (wrapper) {
+				wrapper.addEventListener('mouseover', function(){
+					wrapper.querySelector('img').style.transform = 'scale(1.05)';
 				});
-				container.addEventListener('mouseout', function(){
-					container.querySelector('img').style.transform = 'scale(1)';
+				wrapper.addEventListener('mouseout', function(){
+					wrapper.querySelector('img').style.transform = 'scale(1)';
 				});
 			}
-			let hover = document.querySelectorAll('#collections li');
-			hover.forEach( e => ImageHover(e));
+			let allElements = document.querySelectorAll('#collections li, #projects li'); //or try to concat the NodeList? 
+			allElements.forEach( e => ImageHover(e));
 		},
-		scrollByDrag: function () {
-			const drager = this.$refs.scrollWrap;
+		scrollByDrag: function (container) {
 			let isDown = false;
 			let speedX = 0;
 			let startX;
@@ -49,34 +49,34 @@ export default {
 				clearInterval(scrollInertie); 
 				scrollInertie = setInterval( function () {
 					speed = Math.floor(( speed * 0.9 ) * 100) / 100;
-					drager.scrollLeft = drager.scrollLeft - speed; 
+					container.scrollLeft = container.scrollLeft - speed; 
 					if (Math.abs(speed) < 0.6) {
 						clearInterval(scrollInertie);
 					}   
 				}, 10);
 			}
 
-			drager.addEventListener('mousedown', (e) => {
+			container.addEventListener('mousedown', (e) => {
 				isDown = true;
-				drager.classList.add('active');
-				startX = e.pageX - drager.offsetLeft;
-				scrollLeft = drager.scrollLeft;
+				container.classList.add('active');
+				startX = e.pageX - container.offsetLeft;
+				scrollLeft = container.scrollLeft;
 			});
-			drager.addEventListener('mouseleave', () => {
+			container.addEventListener('mouseleave', () => {
 				isDown = false;
-				drager.classList.remove('active');
+				container.classList.remove('active');
 			});
-			drager.addEventListener('mouseup', () => {
+			container.addEventListener('mouseup', () => {
 				isDown = false;
-				drager.classList.remove('active');
+				container.classList.remove('active');
 				afterDragInertie(speedX);
 			});
-			drager.addEventListener('mousemove', (e) => {
+			container.addEventListener('mousemove', (e) => {
 				if(isDown) {
 					e.preventDefault();
-					const x = e.pageX - drager.offsetLeft;
-					const walk = (x - startX) * 1; //scroll-fast
-					drager.scrollLeft = scrollLeft - walk;
+					const x = e.pageX - container.offsetLeft;
+					const walk = (x - startX) * 1; //increase scroll-speed
+					container.scrollLeft = scrollLeft - walk;
 					speedX = e.movementX;
 				}
 			});
@@ -96,12 +96,12 @@ export default {
 			let parallax = gsap.timeline({
 				scrollTrigger: {
 					scrub: true,
-					trigger: '.grid.collections .img-wrap',
+					trigger: '.grid-style1.collections .img-wrap',
 					start:"top bottom",
 					end:'bottom top',
 				},
 			});
-			parallax.to('.grid.collections img', {y: this.diplacement});
+			parallax.to('.grid-style1.collections img', {y: this.diplacement});
 
 		},
 	},
@@ -112,7 +112,7 @@ export default {
 	<section>
 		<div id='collections'>
 			<h2 class='first-title'>Collections</h2>
-			<div ref='scrollWrap' class='scroll-wrap'>
+			<div ref='scrollWrap1' class='scroll-wrap'>
 				<ul>
 					<li>
 						<div class="img-wrap">
@@ -165,60 +165,80 @@ export default {
 				<img ref='parallaxImg' src="@/assets/img/ProfessionalArea_1-2-1710x1140.jpg">
 			</div>
 		</div>
-		<div class='grid-style1 project'>
+		<div class='grid-style1 project-partner'>
 			<span class='subtitle'>A project Partner</span>
 			<p>Les solutions Glamora sont entièrement réalisées sur mesure et pensées pour des espaces au style unique et personnel : elles se distinguent en effet par leur adaptabilité en termes de dimension, de développement graphique et éventuellement de couleur qui s’harmonisent ainsi avec l’environnement et offrent des solutions décoratives exprimant à la perfection l’atmosphère des projets.</p>
-			<img src="">
 			<a class='link-style1' href="">
 				<span>Explore</span>
 			</a>			
 		</div>
-		<div id='collections'>
-			<h2 class='first-title'>Collections</h2>
-			<div ref='scrollWrap' class='scroll-wrap'>
+		<div id='projects'>
+			<h2 class='first-title'>Projets</h2>
+			<div ref='scrollWrap2' class='scroll-wrap'>
 				<ul>
 					<li>
 						<div class="img-wrap">
-							<img src="@/assets/img/cwmat-720x900.jpg">
+							<img src="https://www.glamora.it/media/LIVING-aspect-ratio-4x5-1-830x1245.jpg">
 						</div>
 						<div>
-							<h3>Creative Wallcoverings</h3>
+							<h3>Living</h3>
 							<hr>
-							<p>The Wallpaper for Interior Design</p>
 						</div>
 					</li>
 					<li>
 						<div class="img-wrap">
-							<img src="@/assets/img/MUSA-GLF481A_2-720x900.jpg">
+							<img src="https://www.glamora.it/media/DINING-aspect-ratio-4x5-1-830x1245.jpg">
 						</div>
 						<div>
-							<h3>GlamFusion™</h3>
+							<h3>Dining</h3>
 							<hr>
-							<p>The Waterproof Wallcovering</p>
 						</div>
 					</li>
 					<li>
 						<div class="img-wrap">
-							<img src="@/assets/img/TEMPS-PERDU-GLPU31A-per-lino-1-720x900.jpg">
+							<img src="https://www.glamora.it/media/WORKING-3-aspect-ratio-4x5-1-830x1245.jpg">
 						</div>
 						<div>
-							<h3>Glampure</h3>
+							<h3>Working</h3>
 							<hr>
-							<p>The Organic Wallcovering</p>
 						</div>
 					</li>
 					<li>
 						<div class="img-wrap">
-							<img src="@/assets/img/TANGLE-GLX811A_2-720x900.jpg">
+							<img src="https://www.glamora.it/media/WET-AREA-1-aspect-ratio-4x5-1-830x1245.jpg">
 						</div>
 						<div>
-							<h3>Discover All</h3>
+							<h3>Wet areas</h3>
 							<hr>
-							<p>Voir tous les produits par style, couleur et matière</p>
+						</div>
+					</li>
+					<li>
+						<div class="img-wrap">
+							<img src="https://www.glamora.it/media/HOSPITALITY-aspect-ratio-4x5-1-830x1245.jpg">
+						</div>
+						<div>
+							<h3>Hospitality</h3>
+							<hr>
+						</div>
+					</li>
+					<li>
+						<div class="img-wrap">
+							<img src="https://www.glamora.it/media/PUBLIC-aspect-ratio-4x5-1-830x1245.jpg">
+						</div>
+						<div>
+							<h3>Public</h3>
+							<hr>
 						</div>
 					</li>
 				</ul>
 			</div>
+		</div>
+		<div class='grid-style1 projects'>
+			<span class='subtitle'>Projects</span>
+			<p>Les produits Glamora sont conçus pour des pièces au style unique et personnel. L’adaptabilité complète en termes de dimension, de développement graphique et éventuellement de couleur donne naissance à des solutions décoratives exprimant au mieux l’essence des projets.</p>
+			<a class='link-style1' href="">
+				<span>More Info</span>
+			</a>			
 		</div>
 	</section>
 </template>
@@ -248,7 +268,7 @@ section {
 		font-weight: 600;
 	}
 
-	#collections {
+	#collections, #projects {
 		.scroll-wrap {
 			overflow-x: scroll;
 			white-space: nowrap;
@@ -342,12 +362,14 @@ section {
 			padding: 24px 0;
 		}
 		&.collections {
+			p {
+				margin-bottom: 10vh;
+			}
 			.img-wrap {
 				grid-column: 1/3;
 				grid-row: 3;
 				height: 90vh;
 				overflow: hidden;
-				margin-top: 10vh;
 
 				img {
 					width: 100%;
@@ -362,7 +384,7 @@ section {
 				padding-left: 15px;
 			}
 		}
-		&.project {
+		&.project-partner, &.projects {
 			a {
 				grid-column: 2;
 				text-transform: uppercase;
