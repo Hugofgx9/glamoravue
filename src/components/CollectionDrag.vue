@@ -254,7 +254,6 @@ section {
 		font-weight: 600;
 		letter-spacing: 0.3em;
 		margin-bottom: 25px;
-		text-transform: uppercase;
 
 		&.first-title {
 			padding-left: 6vw;
