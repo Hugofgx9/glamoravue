@@ -1,4 +1,6 @@
 # glamoravue
+Copy parts of https://www.glamora.it/fr to increase my front-end and vue skills.
+Contact me : hugo.faugeroux@mmibordeaux.com
 
 ## Project setup
 ```
