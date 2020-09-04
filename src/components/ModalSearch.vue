@@ -2,7 +2,7 @@
 import gsap from "gsap";
 
 export default {
-	name: 'ModalMenu',
+	name: 'ModalSearch',
 	data () {
 		return {
 		}
@@ -14,18 +14,18 @@ export default {
 		enterAnimation: function () {
 			let tl= gsap.timeline();
 
-			tl.fromTo('#modal-menu', .5, { 
+			tl.fromTo('#modal-search', .5, { 
 				opacity: 0 }, { 
 				opacity: 1
 			})
-			.from('#modal-menu .navLink li', {
+			.from('#modal-search .navLink li', {
 				opacity: 0,
 				x: 40,
 				stagger: {
 					amount: 0.5,
 				},
 			})
-			.from('#modal-menu .firstList li', {
+			.from('#modal-search .firstList li', {
 				opacity: 0,
 				x: 40,
 				stagger: {
@@ -35,7 +35,7 @@ export default {
 			document.body.classList.add('modal-open');
 		},
 		leaveAnimation: function () {
-			gsap.to('#modal-menu', .2, { 
+			gsap.to('#modal-search', .2, { 
 				opacity: 0,
 			});
 			document.body.classList.remove('modal-open');
@@ -47,8 +47,8 @@ export default {
 
 
 <template>
-	<section id='modal-menu' class='scroll-wrap'>
-		<button id="quite-modal-menu" @click='close'>
+	<section id='modal-search' class='scroll-wrap'>
+		<button id="quite-modal-search" @click='close'>
 			<svg width="24" height="24" viewBox="0 0 32 33" >
 				<title>Close icon</title> 
 				<path fill-rule="evenodd" d="M17.948 16l7.104 7.104a.426.426 0 0 1 .115.315.426.426 0 0 1-.115.315l-1.318 1.318a.426.426 0 0 1-.315.115.426.426 0 0 1-.315-.115L16 17.948l-7.104 7.104a.426.426 0 0 1-.315.115.426.426 0 0 1-.315-.115l-1.318-1.318a.426.426 0 0 1-.115-.315c0-.133.039-.238.115-.315L14.052 16 6.948 8.896a.426.426 0 0 1-.115-.315c0-.134.039-.239.115-.315l1.318-1.318a.426.426 0 0 1 .315-.115c.133 0 .238.039.315.115L16 14.052l7.104-7.104a.426.426 0 0 1 .315-.115c.134 0 .239.039.315.115l1.318 1.318a.426.426 0 0 1 .115.315.426.426 0 0 1-.115.315L17.948 16z" ></path>
@@ -110,7 +110,7 @@ export default {
 	position: fixed;
 }
 
-#modal-menu {
+#modal-search {
 	// display: none;
 	z-index: 100;
 	position: fixed;
@@ -128,7 +128,7 @@ export default {
 		width: 100%;
 	}
 
-	button#quite-modal-menu {
+	button#quite-modal-search {
 		position: absolute;
 		top: 30px;
 		right: 30px;
@@ -140,7 +140,7 @@ export default {
 		transform-origin: center;
 	}
 
-	button#quite-modal-menu:hover {
+	button#quite-modal-search:hover {
 		opacity: 1;
 		transform: rotate(180deg);
 	}
@@ -154,27 +154,6 @@ export default {
 		grid-template-columns: repeat(12, 1fr);
 		grid-template-rows: 125px 50px 280px auto;
 
-		@media (max-width: 767px){
-			width: 100%;
-			float: none;
-			grid-template-rows: auto;
-
-			h2 {
-				padding-top: 80px;
-			}
-
-			ul {
-				padding-top: 40px;
-				padding-bottom: 30px;
-				margin-top: 0 !important;
-				border-bottom: solid 1px #444;
-
-				&:not(:last-child) {
-					height: 280px;
-				}
-			}
-		}
-
 		a {
 			color: rgba(255, 255, 255, 0.57);
 			transition: all .2S ease-out;
@@ -182,25 +161,18 @@ export default {
 	}
 
 	.leftPart {
-
-		> * {
-			grid-column: 2/10;
-
-			@media (max-width: 767px) {
-				grid-column: 3/11;
-			}
-		}
-
 		h2 {
 			text-transform: uppercase;
 			font-size: 12px;
 			letter-spacing: 0.4em;
 			color: rgba(255, 255, 255, 0.3);
+			grid-column: 2/10;
 			grid-row: 1;
 			align-self: end;
 		}
 
 		.navLink {
+			grid-column: 2/10;
 			grid-row: 3;	
 			display: flex;
 			flex-direction: column;
@@ -234,15 +206,8 @@ export default {
 			cursor: default;
 		}
 
-		ul {
-			grid-column: 5/13;
-
-			@media (max-width: 767px) {
-				grid-column: 3/11;
-			}
-		}
-
 		ul:nth-of-type(1) {
+			grid-column: 5/10;
 			grid-row: 3;
 			display: flex;
 			flex-direction: column;
@@ -254,6 +219,7 @@ export default {
 			}
 		}
 		ul:nth-of-type(2) {
+			grid-column: 5/10;
 			grid-row: 4;
 			margin-top: 40px;
 

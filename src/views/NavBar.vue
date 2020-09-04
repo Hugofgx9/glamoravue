@@ -1,5 +1,6 @@
 <script>
 import ModalMenu from '@/components/ModalMenu.vue';
+import ModalSearch from '@/components/ModalSearch.vue';
 import gsap from "gsap";
 // import ScrollTrigger from "gsap/ScrollTrigger";
 
@@ -7,10 +8,13 @@ export default {
 	name: 'NavBar',
 	components: {
 		ModalMenu,
+		ModalSearch,
 	},
 	data () {
 		return {
-			isModalVisible: false,
+			isMenuVisible: false,
+			isSearchVisible: false,
+
 		};
 	},
 	mounted: function () {
@@ -18,21 +22,37 @@ export default {
 	},
 
 	methods: {
-		showModal () {
-			this.isModalVisible = true;
+		showMenu () {
+			this.isMenuVisible = true;
 		},
-		hideModal () {
-			this.isModalVisible = false;
+		hideMenu () {
+			this.isMenuVisible = false;
 		},
 
-		modalEnter: function (el, done) {
+		menuEnter: function (el, done) {
 			this.$refs.modalMenu.enterAnimation();
 			done();
 		},
-		modalLeave: function (el, done) {
+		menuLeave: function (el, done) {
 			this.$refs.modalMenu.leaveAnimation();
 			done();
 		},
+		showSearch () {
+			this.isSearchVisible = true;
+		},
+		hideSearch () {
+			this.isSearchVisible = false;
+		},
+
+		searchEnter: function (el, done) {
+			this.$refs.modalSearch.enterAnimation();
+			done();
+		},
+		searchLeave: function (el, done) {
+			this.$refs.modalSearch.leaveAnimation();
+			done();
+		},
+
 		navEnter: function () {
 			let tl = gsap.timeline();
 			tl.from('header h1', 1, {
@@ -67,20 +87,20 @@ export default {
 			<h1><router-link to='/'>Glamora</router-link></h1>
 			<ul class="leftPart">
 				<li>
-					<button id="openModalMenu" @click='showModal'>
+					<button id="openModalMenu" @click='showMenu'>
 						<svg width="24" height="24" viewBox="0 0 24 24">
 							<title>Menu icon</title> 
 							<path fill-rule="evenodd" d="M21.367 5.898H2.633c-.057 0-.115-.028-.172-.085-.057-.058-.086-.115-.086-.172V4.609c0-.057.029-.114.086-.171.057-.058.115-.086.172-.086h18.734c.057 0 .115.028.172.086.057.057.086.114.086.171v1.032c0 .057-.029.114-.086.172-.057.057-.115.085-.172.085zm0 6.875H2.633c-.057 0-.115-.028-.172-.086-.057-.057-.086-.114-.086-.171v-1.032c0-.057.029-.114.086-.171.057-.058.115-.086.172-.086h18.734c.057 0 .115.028.172.086.057.057.086.114.086.171v1.032c0 .057-.029.114-.086.171-.057.058-.115.086-.172.086zm0 6.875H2.633c-.057 0-.115-.028-.172-.086-.057-.057-.086-.114-.086-.171v-1.032c0-.057.029-.114.086-.172.057-.057.115-.085.172-.085h18.734c.057 0 .115.028.172.085.057.058.086.115.086.172v1.032c0 .057-.029.114-.086.171-.057.058-.115.086-.172.086z"></path>
 						</svg>
 					</button>
 				</li>
-				<li><button @click='showModal'>Collections</button></li>
+				<li><button @click='showMenu'>Collections</button></li>
 				<li><router-link to='bespoke'>Bespoke</router-link></li>
 				<li><router-link to='professionals'>Professionals</router-link></li>
 			</ul>
 			<ul class="rightPart">
 				<li>
-					<button>
+					<button @click='showSearch'>
 						<svg width="24" height="24" viewBox="0 0 24 24">
 							<title>Search icon</title> 
 							<path fill-rule="evenodd" d="M22.871 21.71c.086.087.129.201.129.345a.628.628 0 0 1-.129.386l-.43.387a.534.534 0 0 1-.386.172.408.408 0 0 1-.344-.172l-5.543-5.543a.408.408 0 0 1-.172-.344v-.43a8.816 8.816 0 0 1-2.771 1.74 8.822 8.822 0 0 1-3.287.624c-1.633 0-3.13-.401-4.49-1.203a9.03 9.03 0 0 1-3.245-3.244C1.401 13.068 1 11.57 1 9.938c0-1.633.401-3.13 1.203-4.49a9.03 9.03 0 0 1 3.244-3.245C6.808 1.401 8.305 1 9.937 1c1.633 0 3.13.401 4.49 1.203a9.03 9.03 0 0 1 3.245 3.244c.802 1.361 1.203 2.858 1.203 4.49a8.822 8.822 0 0 1-.623 3.288 8.816 8.816 0 0 1-1.74 2.771h.43c.143 0 .272.057.386.172l5.543 5.543zM9.938 17.5a7.443 7.443 0 0 0 3.802-1.01 7.45 7.45 0 0 0 2.75-2.75 7.443 7.443 0 0 0 1.01-3.802 7.443 7.443 0 0 0-1.01-3.803 7.45 7.45 0 0 0-2.75-2.75 7.443 7.443 0 0 0-3.802-1.01 7.443 7.443 0 0 0-3.803 1.01 7.45 7.45 0 0 0-2.75 2.75 7.443 7.443 0 0 0-1.01 3.803c0 1.375.337 2.642 1.01 3.802a7.45 7.45 0 0 0 2.75 2.75 7.443 7.443 0 0 0 3.803 1.01z"></path>
@@ -100,9 +120,15 @@ export default {
 		</header>
 
 		<transition 
-			v-on:enter='modalEnter'
-			v-on:leave='modalLeave'>
-			<ModalMenu v-show='isModalVisible' @close='hideModal' ref='modalMenu' />
+			v-on:enter='menuEnter'
+			v-on:leave='menuLeave'>
+			<ModalMenu v-show='isMenuVisible' @close='hideMenu' ref='modalMenu' />
+		</transition>
+
+		<transition 
+			v-on:enter='searchEnter'
+			v-on:leave='searchLeave'>
+			<ModalSearch v-show='isSearchVisible' @close='hideSearch' ref='modalSearch' />
 		</transition>
 
 	</div>
