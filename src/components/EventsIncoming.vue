@@ -1,4 +1,8 @@
 <script>
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
 	name: 'EventsIncoming',
 	data () {
@@ -6,11 +10,38 @@ export default {
 
 		}
 	},
+	mounted: function () {
+		this.scrollAnimation();
+	},
+	methods: {
+		scrollAnimation: function () {
+			gsap.from('#events-incoming h2', {
+				scrollTrigger: {
+					trigger: '#events-incoming h2',
+					toggleActions: 'restart none none none',
+				},
+				x: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,
+			});
+			gsap.from('#events-incoming .container-border', {
+				scrollTrigger: {
+					trigger: '#events-incoming .container-border',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,
+			});
+		},
+	},
 }
 </script>
 
 <template>
-	<section>
+	<section id='events-incoming'>
 		<h2>évènements à venir</h2>
 		<div class='container-border'>
 			<span class='place'>Architect@work Paris</span>

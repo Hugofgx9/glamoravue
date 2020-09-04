@@ -104,6 +104,7 @@ footer {
 	background-color: #111;
 	color: white;
 	padding: 0px 50px;
+	padding-bottom: 50px;
 
 	.footer-title-2{
 		color: white;

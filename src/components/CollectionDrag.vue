@@ -15,6 +15,7 @@ export default {
 		this.scaleImageOnHover();
 		this.scrollByDrag(this.$refs.scrollWrap1);
 		this.scrollByDrag(this.$refs.scrollWrap2);
+		this.scrollAnimation();
 		setTimeout( () => {
 			this.calculateImageHeight();
 		}, 400);
@@ -92,7 +93,6 @@ export default {
 				parallax.kill();
 			}
 			this.diplacement = -this.imageHeight * 0.1;
-			console.log('diplacement = ' + this.diplacement);
 			let parallax = gsap.timeline({
 				scrollTrigger: {
 					scrub: true,
@@ -102,7 +102,115 @@ export default {
 				},
 			});
 			parallax.to('.grid-style1.collections img', {y: this.diplacement});
+		},
+		scrollAnimation: function() {
+			let tlCollections = gsap.timeline({
+				scrollTrigger: {
+					trigger: '#collections',
+					toggleActions: 'restart none none none',
+				}
+			});
+			tlCollections.from('#collections', {x: 50, opacity: 0, ease: 'Power2.out', duration: .5});
 
+			gsap.from('.collections.grid-style1 .subtitle', {
+				scrollTrigger: {
+					trigger: '.collections.grid-style1 .subtitle',
+					toggleActions: 'restart none none none',
+				},
+				x: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,
+			});
+			gsap.from('.collections.grid-style1 p', {
+				scrollTrigger: {
+					trigger: '.collections.grid-style1 p',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,
+			});
+			gsap.from('.collections.grid-style1 .img-wrap', {
+				scrollTrigger: {
+					trigger: '.collections.grid-style1 .img-wrap',
+					toggleActions: 'restart none none none',
+				},
+				x: -30, 
+				opacity: 0,  
+				duration: .5,
+			});
+
+			gsap.from('.project-partner.grid-style1 .subtitle', {
+				scrollTrigger: {
+					trigger: '.project-partner.grid-style1 .subtitle',
+					toggleActions: 'restart none none none',
+				},
+				x: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,				
+			});
+			gsap.from('.project-partner.grid-style1 p', {
+				scrollTrigger: {
+					trigger: '.project-partner.grid-style1 p',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,			
+			});
+			gsap.from('.project-partner.grid-style1 .link-style1', {
+				scrollTrigger: {
+					trigger: '.project-partner.grid-style1 .link-style1',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,			
+			});
+
+			let tlProjects = gsap.timeline({
+				scrollTrigger: {
+					trigger: '#projects',
+					toggleActions: 'restart none none none',
+				}
+			});
+			tlProjects.from('#projects', {x: 50, opacity: 0, ease: 'Power2.out', duration: .5});
+
+			gsap.from('.projects.grid-style1 .subtitle', {
+				scrollTrigger: {
+					trigger: '.projects.grid-style1 .subtitle',
+					toggleActions: 'restart none none none',
+				},
+				x: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,				
+			});
+			gsap.from('.projects.grid-style1 p', {
+				scrollTrigger: {
+					trigger: '.projects.grid-style1 p',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,			
+			});
+			gsap.from('.projects.grid-style1 .link-style1', {
+				scrollTrigger: {
+					trigger: '.projects.grid-style1 .link-style1',
+					toggleActions: 'restart none none none',
+				},
+				y: 30, 
+				opacity: 0, 
+				ease: 'Power2.out', 
+				duration: 1,			
+			});
 		},
 	},
 }
@@ -335,6 +443,10 @@ section {
 			}
 		}
 
+	}
+
+	#projects {
+		margin-top: 70px;
 	}
 
 
