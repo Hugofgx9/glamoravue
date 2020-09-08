@@ -18,7 +18,7 @@ export default {
 			gsap.from('#events-incoming h2', {
 				scrollTrigger: {
 					trigger: '#events-incoming h2',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				x: 30, 
 				opacity: 0, 
@@ -28,7 +28,7 @@ export default {
 			gsap.from('#events-incoming .container-border', {
 				scrollTrigger: {
 					trigger: '#events-incoming .container-border',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 

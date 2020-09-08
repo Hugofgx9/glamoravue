@@ -107,7 +107,7 @@ export default {
 			let tlCollections = gsap.timeline({
 				scrollTrigger: {
 					trigger: '#collections',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				}
 			});
 			tlCollections.from('#collections', {x: 50, opacity: 0, ease: 'Power2.out', duration: .5});
@@ -115,7 +115,7 @@ export default {
 			gsap.from('.collections.grid-style1 .subtitle', {
 				scrollTrigger: {
 					trigger: '.collections.grid-style1 .subtitle',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				x: 30, 
 				opacity: 0, 
@@ -125,7 +125,7 @@ export default {
 			gsap.from('.collections.grid-style1 p', {
 				scrollTrigger: {
 					trigger: '.collections.grid-style1 p',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 
@@ -135,7 +135,7 @@ export default {
 			gsap.from('.collections.grid-style1 .img-wrap', {
 				scrollTrigger: {
 					trigger: '.collections.grid-style1 .img-wrap',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				x: -30, 
 				opacity: 0,  
@@ -145,7 +145,7 @@ export default {
 			gsap.from('.project-partner.grid-style1 .subtitle', {
 				scrollTrigger: {
 					trigger: '.project-partner.grid-style1 .subtitle',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				x: 30, 
 				opacity: 0, 
@@ -155,7 +155,7 @@ export default {
 			gsap.from('.project-partner.grid-style1 p', {
 				scrollTrigger: {
 					trigger: '.project-partner.grid-style1 p',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 
@@ -165,7 +165,7 @@ export default {
 			gsap.from('.project-partner.grid-style1 .link-style1', {
 				scrollTrigger: {
 					trigger: '.project-partner.grid-style1 .link-style1',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 
@@ -176,7 +176,7 @@ export default {
 			let tlProjects = gsap.timeline({
 				scrollTrigger: {
 					trigger: '#projects',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				}
 			});
 			tlProjects.from('#projects', {x: 50, opacity: 0, ease: 'Power2.out', duration: .5});
@@ -184,7 +184,7 @@ export default {
 			gsap.from('.projects.grid-style1 .subtitle', {
 				scrollTrigger: {
 					trigger: '.projects.grid-style1 .subtitle',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				x: 30, 
 				opacity: 0, 
@@ -194,7 +194,7 @@ export default {
 			gsap.from('.projects.grid-style1 p', {
 				scrollTrigger: {
 					trigger: '.projects.grid-style1 p',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 
@@ -204,7 +204,7 @@ export default {
 			gsap.from('.projects.grid-style1 .link-style1', {
 				scrollTrigger: {
 					trigger: '.projects.grid-style1 .link-style1',
-					toggleActions: 'restart none none none',
+					toggleActions: 'play none none none',
 				},
 				y: 30, 
 				opacity: 0, 
