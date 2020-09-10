@@ -18,7 +18,7 @@ export default {
 		};
 	},
 	mounted: function () {
-		this.navEnter();
+		// this.navEnter();
 	},
 
 	methods: {
