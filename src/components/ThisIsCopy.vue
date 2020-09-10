@@ -28,9 +28,13 @@ export default {
 					<path fill-rule="evenodd" d="M17.948 16l7.104 7.104a.426.426 0 0 1 .115.315.426.426 0 0 1-.115.315l-1.318 1.318a.426.426 0 0 1-.315.115.426.426 0 0 1-.315-.115L16 17.948l-7.104 7.104a.426.426 0 0 1-.315.115.426.426 0 0 1-.315-.115l-1.318-1.318a.426.426 0 0 1-.115-.315c0-.133.039-.238.115-.315L14.052 16 6.948 8.896a.426.426 0 0 1-.115-.315c0-.134.039-.239.115-.315l1.318-1.318a.426.426 0 0 1 .315-.115c.133 0 .238.039.315.115L16 14.052l7.104-7.104a.426.426 0 0 1 .315-.115c.134 0 .239.039.315.115l1.318 1.318a.426.426 0 0 1 .115.315.426.426 0 0 1-.115.315L17.948 16z" ></path>
 				</svg>
 			</button>
-			<p>This website is a copy of the original glamora site homepage that I made in order to work on my front skills in vue.
+			<p>
+				<span class='heavy-text'>This website is a copy</span>
+				of the original Glamora site homepage that I made in order to work on my front skills in vue.
 			</p>
-			<p class='contact-me'>If you like me work, you can contact me : hugo.faugeroux@mmibordeaux.com </p>
+			<p class='contact-me'>If you like me work, you can contact me : 
+				<span class="heavy-text">hugo.faugeroux@mmibordeaux.com</span> 
+			</p>
 			<a target="_blank" rel="noopener noreferrer" href="https://www.glamora.it/fr/">Visit the real Website</a>
 		</div>
 		<div class='overlay'>	
@@ -47,13 +51,13 @@ export default {
 	top: 0;
 	height: 100%;
 	width: 100%;
-	background-color: rgba(11, 11, 11, 0.90);
+	background-color: rgba(11, 11, 11, 0.85);
 }
 .container {
 	display: flex;
 	flex-direction: column;
 	width: 600px;
-	background-color: #222;
+	background-color: #111;
 	padding: 24px;
 	padding-right: 50px;
 	z-index: 1000;
@@ -89,6 +93,11 @@ export default {
 	p{
 		font-weight: 300;
 		font-size: 14px;
+
+		.heavy-text {
+			color: white;
+			font-weight: 400;
+		}
 
 		&.contact-me {
 			padding: 24px 0px;

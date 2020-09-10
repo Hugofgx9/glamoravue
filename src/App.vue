@@ -2,6 +2,7 @@
 import NavBar from '@/views/NavBar.vue';
 import Footer from '@/views/Footer.vue';
 import ThisIsCopy from '@/components/ThisIsCopy.vue';
+import gsap from 'gsap';
 
 export default { 
 	name: "App",
@@ -19,6 +20,13 @@ export default {
 		hideThisIsCopy () {
 			this.isThisIsCopyVisible = false;
 			this.$refs.navBar.navEnter();
+		},
+		isCopyLeave: function (el, done) {
+			gsap.to('.this-is-copy', {
+				opacity: 0,
+				duration: 1,
+			});
+			done();
 		}
 
 	}
@@ -27,9 +35,11 @@ export default {
 
 <template>
 	<div id="app">
-		<ThisIsCopy v-show='isThisIsCopyVisible' @close='hideThisIsCopy'/>
-		<div class='overlay'>
-		</div>
+		<transition 
+			v-on:leave='isCopyLeave'>
+			<ThisIsCopy class='this-is-copy' v-show='isThisIsCopyVisible' @close='hideThisIsCopy' 
+				v-scroll-lock="isThisIsCopyVisible"/>
+		</transition>
 		<NavBar ref='navBar'/>
 		<router-view/>
 		<Footer/>
@@ -60,8 +70,6 @@ a{
 	overflow-x: hidden;
 
 	>.overlay {
-
-
 	}
 }
 

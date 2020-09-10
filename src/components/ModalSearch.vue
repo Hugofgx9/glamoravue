@@ -32,13 +32,13 @@ export default {
 					amount: 0.5,
 				},
 			}, '<');
-			document.body.classList.add('modal-open');
+			//document.body.classList.add('modal-open');
 		},
 		leaveAnimation: function () {
 			gsap.to('#modal-search', .2, { 
 				opacity: 0,
 			});
-			document.body.classList.remove('modal-open');
+			//document.body.classList.remove('modal-open');
 		}
 
 	}

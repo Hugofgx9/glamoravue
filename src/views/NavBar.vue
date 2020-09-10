@@ -122,13 +122,13 @@ export default {
 		<transition 
 			v-on:enter='menuEnter'
 			v-on:leave='menuLeave'>
-			<ModalMenu v-show='isMenuVisible' @close='hideMenu' ref='modalMenu' />
+			<ModalMenu v-show='isMenuVisible' @close='hideMenu' ref='modalMenu' v-scroll-lock="isMenuVisible"/>
 		</transition>
 
 		<transition 
 			v-on:enter='searchEnter'
 			v-on:leave='searchLeave'>
-			<ModalSearch v-show='isSearchVisible' @close='hideSearch' ref='modalSearch' />
+			<ModalSearch v-show='isSearchVisible' @close='hideSearch' ref='modalSearch' v-scroll-lock="isSearchVisible"/>
 		</transition>
 
 	</div>
