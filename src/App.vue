@@ -76,6 +76,8 @@ a{
 button {
 	border: none;
 	background-color: transparent;
+	appearance: none;
+	font-family: inherit;
 }
 
 button:focus {

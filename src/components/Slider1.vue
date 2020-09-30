@@ -215,6 +215,11 @@ export default {
 		overflow: hidden;
 		position: relative;
 
+		@media (max-width: 800px) {
+			height: 30vh;
+			min-height: 20px;
+		}
+
 		video, img {
 			width: 100%;
 			height: auto;
@@ -327,6 +332,17 @@ export default {
 				&::before {
 					transform: scaleX(1);
 				}
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		.slider-vertical li {
+			flex-direction: column;
+			justify-content: start;
+
+			span {
+				width: 100%;
 			}
 		}
 	}

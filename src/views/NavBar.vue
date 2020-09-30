@@ -94,9 +94,9 @@ export default {
 						</svg>
 					</button>
 				</li>
-				<li><button @click='showMenu'>Collections</button></li>
-				<li><router-link to='bespoke'>Bespoke</router-link></li>
-				<li><router-link to='professionals'>Professionals</router-link></li>
+				<li class='hide-mobile'><button @click='showMenu'>Collections</button></li>
+				<li class='hide-mobile'><router-link to='bespoke'>Bespoke</router-link></li>
+				<li class='hide-mobile'><router-link to='professionals'>Professionals</router-link></li>
 			</ul>
 			<ul class="rightPart">
 				<li>
@@ -140,6 +140,33 @@ export default {
 .modal-open{
 	overflow: hidden;
 	position: fixed;
+}
+
+@media (max-width: 1000px) {
+	.hide-mobile {
+		display: none;
+	}
+
+	.leftPart {
+		grid-column: 1 !important;
+		margin-right: 0px !important;
+	}
+
+	h1 {
+		grid-column: 4/10 !important;
+	}
+
+	.rightPart {
+		grid-column: 11/13 !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.leftPart {
+		grid-column: 2 !important;
+		margin-right: 0px !important;
+	}
+
 }
 
 header {

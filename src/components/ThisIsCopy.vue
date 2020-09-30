@@ -35,7 +35,14 @@ export default {
 			<p class='contact-me'>If you like me work, you can contact me : 
 				<span class="heavy-text">hugo.faugeroux@mmibordeaux.com</span> 
 			</p>
-			<a target="_blank" rel="noopener noreferrer" href="https://www.glamora.it/fr/">Visit the real Website</a>
+			<div class='all-visit-button'>
+				<a class='visit-button' role='button' target="_blank" rel="noopener noreferrer" href="https://www.glamora.it/fr/">
+					Visit the real Website
+				</a>
+				<button class='visit-button' @click='close'>
+					Visit my copy
+				</button>
+			</div>
 		</div>
 		<div class='overlay'>	
 		</div>
@@ -68,7 +75,7 @@ export default {
 	transform: translate(-50%, -50%);
 
 	@media (max-width: 767px) {
-		width: 80vw;
+		width: 70vw;
 	}
 
 	button#quite-disclamer {
@@ -104,19 +111,31 @@ export default {
 		}
 	}
 
-	a {
+	.all-visit-button {
+		display: flex;
+		justify-content: space-around;
+
+		@media (max-width: 700px) {
+			flex-direction: column;
+		}
+
+	}
+
+	.visit-button {
 		align-self: center;
+		text-align: center;
+		margin-top: 16px;
 		padding: 0 24px;
 		height: 48px;
 		width: fit-content;
 		overflow: hidden;
+		box-sizing: border-box;
 		border: .1px solid rgba(204,204,204,1);
 		color: rgba(204,204,204,1);
 		text-transform: uppercase;
 		font-weight: 300;
 		font-size: 13px;
 		letter-spacing: 0.2em;
-		margin-top: 16px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
