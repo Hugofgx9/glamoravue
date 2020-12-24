@@ -9,6 +9,29 @@ export default {
 		return {
 			imageHeight: null,
 			diplacement: null,
+			collections: [
+				{
+					img: require('@/assets/img/cwmat-720x900.jpg'), 
+					title: 'Creative Wallcoverings', 
+					about: 'The Wallpaper for Interior Design' 
+				},
+				{
+					img: require('@/assets/img/MUSA-GLF481A_2-720x900.jpg'), 
+					title: 'GlamFusion™', 
+					about: 'The Waterproof Wallcovering' 
+				},				
+				{
+					img: require('@/assets/img/TEMPS-PERDU-GLPU31A-per-lino-1-720x900.jpg'), 
+					title: 'Glampure', 
+					about: 'The Organic Wallcovering' 
+				},
+				{
+					img: require('@/assets/img/TANGLE-GLX811A_2-720x900.jpg'), 
+					title: 'Discover All', 
+					about: 'Voir tous les produits par style, couleur et matière' 
+				},
+
+			]
 		}
 	},
 	mounted: function () {
@@ -222,44 +245,14 @@ export default {
 			<h2 class='first-title'>Collections</h2>
 			<div ref='scrollWrap1' class='scroll-wrap'>
 				<ul>
-					<li>
+					<li v-for="collection in collections" :key="collection.title">
 						<div class="img-wrap">
-							<img src="@/assets/img/cwmat-720x900.jpg">
+							<img :src="collection.img">
 						</div>
 						<div>
-							<h3>Creative Wallcoverings</h3>
+							<h3> {{ collection.title }} </h3>
 							<hr>
-							<p>The Wallpaper for Interior Design</p>
-						</div>
-					</li>
-					<li>
-						<div class="img-wrap">
-							<img src="@/assets/img/MUSA-GLF481A_2-720x900.jpg">
-						</div>
-						<div>
-							<h3>GlamFusion™</h3>
-							<hr>
-							<p>The Waterproof Wallcovering</p>
-						</div>
-					</li>
-					<li>
-						<div class="img-wrap">
-							<img src="@/assets/img/TEMPS-PERDU-GLPU31A-per-lino-1-720x900.jpg">
-						</div>
-						<div>
-							<h3>Glampure</h3>
-							<hr>
-							<p>The Organic Wallcovering</p>
-						</div>
-					</li>
-					<li>
-						<div class="img-wrap">
-							<img src="@/assets/img/TANGLE-GLX811A_2-720x900.jpg">
-						</div>
-						<div>
-							<h3>Discover All</h3>
-							<hr>
-							<p>Voir tous les produits par style, couleur et matière</p>
+							<p> {{ collection.about }}</p>
 						</div>
 					</li>
 				</ul>
@@ -395,7 +388,8 @@ section {
 			}
 
 			li {
-				width: 420px;
+				width: 84vw;
+				max-width: 420px;
 				float: left;
 				margin-right: 15px;
 			}
@@ -408,7 +402,8 @@ section {
 			}
 
 			.img-wrap {
-				height: 525px;
+				height: 105vw;
+				max-height: 525px;
 				overflow: hidden;
 			}
 
