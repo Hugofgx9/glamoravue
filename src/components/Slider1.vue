@@ -226,10 +226,17 @@ export default {
 			position: relative;
 			top: 50%;
 			transform: translateY(-50%);
+
+			@media (max-width: 567px) {
+				width: auto;
+				height: 100%;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 
 		.overlay {
-
 			position: absolute;
 			top: 0;
 			left: 0;
